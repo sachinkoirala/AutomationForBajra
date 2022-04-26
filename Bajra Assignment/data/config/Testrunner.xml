@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Automation Suite" parallel="tests">
+    <parameter name="configFile" value="test-data.xml"/>
+    <parameter name="HubUrl" value="http://192.168.200.17:5555/wd/hub"/>
+    <listeners>
+        <listener class-name="tests.WebDriverListener"></listener>
+        <listener class-name="tests.utils.Listener.ListenerClass"></listener>
+
+    </listeners>
+
+    <!--mvn clean test -DsuiteXmlFile="data/config/Testrunner.xml"-->
+
+    <test name="FORM TEST All" thread-count="1" parallel="methods" verbose="2">
+        <parameter name="browserName" value="chrome"/>
+        <parameter name="platform" value="WIN10"/>
+
+        <classes>
+
+            <class name="tests.pageNavigationtest.pageNavigationtest">
+                <methods>
+                    <include name="Test_to_navigate_and_validate_allpages"/>
+                </methods>
+            </class>
+            <class name="tests.submitQuerytest.submitQuerytest">
+                <methods>
+                    <include name="Test_to_submit_contactus_query"/>
+                </methods>
+            </class>
+
+
+        </classes>
+    </test>
+
+</suite>
